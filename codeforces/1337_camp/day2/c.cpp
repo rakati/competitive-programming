@@ -23,25 +23,32 @@ typedef vector< vl > vvl;
 #define PB push_back
 #define MP make_pair
 #define RP(i,a,n) for(int i = a; i < n; i++)
-#define MOD 10000000007
+#define MOD 1000000007
 
-
+vi res(25010);
+ 
+void    dfs(vvi &v, vb &vis, int s){
+    vis[s] = true;
+    res[s] = 1;
+    RP(i,0,v[s].size())
+        if (!vis[ v[s][i]])
+            {dfs(v,vis, v[s][i]);res[s] += res[v[s][i]];}
+}
+ 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int t;
-    cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
+    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int n;
+    cin >> n;
+    vvi v(n);
+    vb vis(n);
+    int r;
+    RP(i,0,n){
+        int x;
+        cin >> x;
+        if (x == -1) r = i;
+        else {v[i].PB(x - 1); v[x - 1].PB(i);}
     }
+    dfs(v, vis, r);
+    RP(i,0,n) cout << res[i] << '\n';
     return 0;
 }

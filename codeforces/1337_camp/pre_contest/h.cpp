@@ -1,3 +1,4 @@
+//test
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -25,23 +26,29 @@ typedef vector< vl > vvl;
 #define RP(i,a,n) for(int i = a; i < n; i++)
 #define MOD 10000000007
 
-
 int main(){
     ios::sync_with_stdio(0);
-    cin.tie(0);
+    cin.tie(0);cout.tie(0);
     int t;
     cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
+    while (t--){
+        int n,c,k;
+        cin >> n >> c >> k;
+        vl p(n);
+        RP(i,0,n) cin >> p[i];
+        sort(p.begin(), p.end());
+        int g = 1;
+        int gs = 1;
+        int f = 0;
+        RP(i,1,n){
+            gs++;
+            if (p[i] - p[f] > k || gs > c){
+                g++;
+                f = i;
+                gs = 1;
+            }
+        }
+        cout << g << '\n';
     }
     return 0;
 }

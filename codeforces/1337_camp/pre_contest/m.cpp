@@ -25,23 +25,12 @@ typedef vector< vl > vvl;
 #define RP(i,a,n) for(int i = a; i < n; i++)
 #define MOD 10000000007
 
-
 int main(){
+    
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t;
-    cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
-    }
+    int x;
+    cin >> x;
+    cout << x  / 50 + (x % 50 != 0 ? 1 : 0) << '\n';
     return 0;
 }

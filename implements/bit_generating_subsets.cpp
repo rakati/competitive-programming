@@ -21,11 +21,9 @@ int main(){
     int n;
     cin >> n;
     RE(b, 0, (1<<n)){
-        cout << "{ ";
         RE(i, 0, n){
             if (b & (1 << i)) cout << i << ' ';
         }
-        cout << '}' << '\n';
     }
     return 0;
 }

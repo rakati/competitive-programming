@@ -23,25 +23,21 @@ typedef vector< vl > vvl;
 #define PB push_back
 #define MP make_pair
 #define RP(i,a,n) for(int i = a; i < n; i++)
-#define MOD 10000000007
+#define MOD 1000000007
 
+// src : https://codeforces.com/contest/26/problem/A
 
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int t;
-    cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
-    }
+int main(){ 
+    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int n;
+    cin >> n;
+    vi v(n + 1, 0);
+    v[0] = v[1] = 4;
+    int res = 0;
+    for(int i = 2;i <= n; i++)
+        if (v[i] == 0)
+            for(int j = i * 2; j <= n; j += i) v[j]++;
+    RP(i,0,n+1) if (v[i] == 2) res++;
+    cout << res << '\n';
     return 0;
 }

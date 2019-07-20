@@ -23,25 +23,27 @@ typedef vector< vl > vvl;
 #define PB push_back
 #define MP make_pair
 #define RP(i,a,n) for(int i = a; i < n; i++)
-#define MOD 10000000007
-
+#define MOD 1000000007
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int t;
-    cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
+    ios::sync_with_stdio(0);cin.tie(0);
+    ll n, k;
+    cin >> n >> k;
+    vb isp(n + 1,true);
+    vl p;
+    isp[0] = isp[1] = false;
+    RP(i,2,n+1)
+        if (isp[i]){
+            p.PB(i);
+            for (int j = i * i; j <= n; j += i)
+                isp[j] = false;
+        }
+    int mult = 0;
+    RP(i,0,p.size()){
+        if (p[i] == n) break;
+        else if (sum + p[i] <= n) sum += p[i], mult++;
     }
+    if (sum == n) cout << "YES\n";
+    else cout << "NO\n";
     return 0;
 }

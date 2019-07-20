@@ -29,6 +29,19 @@ int main(){
     
     ios::sync_with_stdio(0);
     cin.tie(0);
-    
+    int n;
+    cin >> n;
+    vi v(n);
+    RP(i,0,n) cin >> v[i];
+    int max = 1;
+    RP(i,0,n){
+        int score = 1;
+        int f = i + 1;
+        int b = i - 1;
+        while (f < n && v[f-1] >= v[f]) score++,f++;
+        while (b >= 0 && v[b + 1] >= v[b]) score++,b--;
+        if (score > max) max = score;
+    }
+    cout << max << '\n';
     return 0;
 }

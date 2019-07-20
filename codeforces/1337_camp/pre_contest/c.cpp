@@ -22,26 +22,35 @@ typedef vector< vl > vvl;
 #define S second
 #define PB push_back
 #define MP make_pair
-#define RP(i,a,n) for(int i = a; i < n; i++)
+#define RP(i,a,n) for(size_t i = a; i < n; i++)
 #define MOD 10000000007
 
+ll binpow(ll a, ll b, ll m) {
+    a %= m;
+    ll res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % m;
+        a = a * a % m;
+        b >>= 1;
+    }
+    return res;
+}
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     int t;
     cin >> t;
-    RP(i,1,t+1){
-        int n;
-        cin >> n;
-        vi v1(n),v2(n);
-        RP(j,0,n) cin >> v1[j];
-        RP(j,0,n) cin >> v2[j];
-        sort(v1.begin(), v1.end());
-        sort(v2.rbegin(), v2.rend());
-        ll sum = 0;
-        RP(j,0,n) sum += v2[j] * v1[j];
-        cout << "Case #" << i << ": " << sum << '\n';
+    while (t--){
+        ll a,n,k;
+        cin >> a >> n >> k;
+        k = pow(10, k);
+        ll x = binpow(a,n,k);
+        string s = to_string(x);
+        int sum = 0;
+        for(size_t i = 0; i < s.size(); i++) sum += s[i] - '0';
+        cout << sum << '\n';
     }
     return 0;
 }
