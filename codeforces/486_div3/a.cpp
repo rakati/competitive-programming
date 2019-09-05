@@ -1,5 +1,5 @@
 /* **************************************************** */
-/*                      By : rakati                     */
+/*                      Author : rakati                 */
 /* **************************************************** */
 
 #include <bits/stdc++.h>
@@ -8,6 +8,7 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (b); i++)
 #define RV(i,a,b) for(int i = (a); i > (b); i--)
+#define SHOW(v) {RP(i,0,v.size()) cout << v[i] << ' ';cout << '\n';}
 #define ALL(x) x.begin(),x.end()
 #define PI 3.14159265359
 #define MOD 1000000007
@@ -36,21 +37,22 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int n;
-    cin >> n;
-    vi v(n);
-    RP(i,0,n) cin >> v[i];
-    map<int,int> m;
-    int ans = 0;
-    int last = v[0];
-    RP(i,0,n){
-        m[v[i]] = 1 + m[v[i] - 1];
-        if (ans < m[v[i]]){ans = m[v[i]]; last = v[i];}
-    }
-    int cur = last - ans + 1;
-    cout << ans << '\n';
-    for (int i = 0; i < n && cur <= last;i++)
-        if (v[i] == cur) {cout << i + 1 << ' ';cur++;}
-    cout << '\n';
+    int n,k;
+    cin >> n >> k;
+    vpii s(n);
+    RP(i,0,n) {cin >> s[i].F;s[i].S = i + 1;}
+    sort(ALL(s));
+    vi res;
+    res.PB(s[0].S);
+    RP(i,1,n)
+        if (s[i].F != s[i - 1].F) res.PB(s[i].S);
+    if (res.size() >= k) {
+        cout << "YES\n";
+        int i = 0;
+        sort(ALL(res));
+        while (i < k){
+            cout << res[i++] << ' ';
+        }
+    }else cout << "NO\n";
     return 0;
 }

@@ -33,9 +33,32 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
-int main(){
-    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-    //freopen("input.txt","r",stdin);
-	//freopen("output.txt","w",stdout);
-    return 0;
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int a, b,c;
+		cin >> a >> b >> c;
+		int low = 0;
+		int hi = c;
+		int res = -1;
+		while (low <= hi)
+		{
+			int mid = (low + hi) / 2;
+			if (a +  mid > b + c - mid)
+			{
+				res = mid;
+				hi = mid - 1;
+			}
+			else
+				low = mid + 1;
+		}
+		cout << (res == -1 ? 0 : c - res + 1) << endl;
+	}
 }

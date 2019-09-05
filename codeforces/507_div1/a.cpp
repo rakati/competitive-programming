@@ -1,5 +1,5 @@
 /* **************************************************** */
-/*                      By : rakati                     */
+/*                      Author : rakati                 */
 /* **************************************************** */
 
 #include <bits/stdc++.h>
@@ -8,6 +8,7 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (b); i++)
 #define RV(i,a,b) for(int i = (a); i > (b); i--)
+#define SHOW(v) {RP(i,0,v.size()) cout << v[i] << ' ';cout << '\n';}
 #define ALL(x) x.begin(),x.end()
 #define PI 3.14159265359
 #define MOD 1000000007
@@ -32,25 +33,23 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
+vi p(200010);
+vi res(200010);
+int n;
+
+void      solve(vi &p, int i){
+    
+}
+
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int n;
-    cin >> n;
-    vi v(n);
+    ll t;
+    cin >> n >> t;
+    vl v(n);
     RP(i,0,n) cin >> v[i];
-    map<int,int> m;
-    int ans = 0;
-    int last = v[0];
-    RP(i,0,n){
-        m[v[i]] = 1 + m[v[i] - 1];
-        if (ans < m[v[i]]){ans = m[v[i]]; last = v[i];}
-    }
-    int cur = last - ans + 1;
-    cout << ans << '\n';
-    for (int i = 0; i < n && cur <= last;i++)
-        if (v[i] == cur) {cout << i + 1 << ' ';cur++;}
-    cout << '\n';
+    RP(i,0,n) cin >> p[i];
+    vi res = solve(p, 0);
     return 0;
 }

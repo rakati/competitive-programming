@@ -2,6 +2,17 @@
     "files.associations": {
         "iomanip": "cpp",
         "random": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "bitset": "cpp",
+        "array": "cpp",
+        "hashtable": "cpp",
+        "valarray": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp",
+        "utility": "cpp"
     }
 }

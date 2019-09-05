@@ -1,5 +1,5 @@
 /* **************************************************** */
-/*                      By : rakati                     */
+/*                      Author : rakati                 */
 /* **************************************************** */
 
 #include <bits/stdc++.h>
@@ -8,6 +8,7 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (b); i++)
 #define RV(i,a,b) for(int i = (a); i > (b); i--)
+#define SHOW(v) {RP(i,0,v.size()) cout << v[i] << ' ';cout << '\n';}
 #define ALL(x) x.begin(),x.end()
 #define PI 3.14159265359
 #define MOD 1000000007
@@ -36,21 +37,23 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int n;
-    cin >> n;
-    vi v(n);
-    RP(i,0,n) cin >> v[i];
-    map<int,int> m;
-    int ans = 0;
-    int last = v[0];
-    RP(i,0,n){
-        m[v[i]] = 1 + m[v[i] - 1];
-        if (ans < m[v[i]]){ans = m[v[i]]; last = v[i];}
+    int n,k;
+    cin >> n >> k;
+    if (k > n) cout << "NO\n";
+    else{
+        vi res(k,1);
+        n -= k;
+        RP(i,0,res.size()){
+            if (n == 0) break;
+            while (res[i] <= n){
+                n -= res[i];
+                res[i] *= 2;
+            }
+        }
+        if (n == 0) {
+            cout << "YES\n";
+            SHOW(res);
+        }else cout << "NO\n";
     }
-    int cur = last - ans + 1;
-    cout << ans << '\n';
-    for (int i = 0; i < n && cur <= last;i++)
-        if (v[i] == cur) {cout << i + 1 << ' ';cur++;}
-    cout << '\n';
     return 0;
 }

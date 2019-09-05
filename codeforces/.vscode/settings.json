@@ -30,6 +30,26 @@
         "algorithm": "cpp",
         "*.tcc": "cpp",
         "bitset": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iosfwd": "cpp",
+        "memory": "cpp",
+        "type_traits": "cpp",
+        "iomanip": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "limits": "cpp",
+        "__functional_03": "cpp",
+        "__mutex_base": "cpp",
+        "any": "cpp",
+        "optional": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "thread": "cpp",
+        "variant": "cpp"
     }
 }

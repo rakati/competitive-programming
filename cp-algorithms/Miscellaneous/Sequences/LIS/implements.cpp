@@ -32,6 +32,48 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
+int     lis(vi &v){
+    int n = v.size();
+    vi dp(n, 1);
+    
+    RP(i,0,n)
+        RP(j,0,i)
+            if (v[i] > v[j]) dp[i] = max(dp[i], dp[j] + 1);
+    return (*max_element(ALL(dp)));
+}
+
+vi     lis_with_element(vi &v){
+    int n = v.size();
+    vi dp(n, 1);
+    vi pos(n, -1);
+    RP(i,0,n)
+        RP(j,0,i)
+            if (v[i] > v[j] && dp[i] < dp[j] + 1) {dp[i] = dp[j] + 1;pos[i] = j;}
+    int last = max_element(ALL(dp)) - dp.begin();
+    vi res;
+    res.PB(v[last]);
+    while (pos[last] >= 0){
+        res.PB(v[pos[last]]);
+        last = pos[last];
+    }
+    reverse(ALL(res));
+    return res;
+}
+
+vi     lis_with_element_logn(vi &v){
+    int n = v.size();
+    vi dp(n + 1, INF);
+    vi pos(n + 1, -1);
+    RP(i,0,n){
+        int j = upper_bound(ALL(dp), v[i])  - dp.begin();
+        if (dp[j - 1] < v[i] && v[i] < dp[j]) {dp[j] = v[i]; pos[j] = i;}
+    }
+    vi res;
+    for (int i = 1; i < n && pos[i] != -1; i++)
+        res.PB(pos[i]);
+    return res;
+}
+
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
@@ -40,17 +82,8 @@ int main(){
     cin >> n;
     vi v(n);
     RP(i,0,n) cin >> v[i];
-    map<int,int> m;
-    int ans = 0;
-    int last = v[0];
-    RP(i,0,n){
-        m[v[i]] = 1 + m[v[i] - 1];
-        if (ans < m[v[i]]){ans = m[v[i]]; last = v[i];}
-    }
-    int cur = last - ans + 1;
-    cout << ans << '\n';
-    for (int i = 0; i < n && cur <= last;i++)
-        if (v[i] == cur) {cout << i + 1 << ' ';cur++;}
-    cout << '\n';
+    cout << lis(v) << endl;
+    vi res = lis_with_element(v);
+    RP(i,0,res.size()) cout << res[i] << ' ';
     return 0;
 }
