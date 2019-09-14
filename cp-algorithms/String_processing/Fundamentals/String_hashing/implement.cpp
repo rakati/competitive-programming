@@ -10,14 +10,14 @@ using namespace std;
 #define RV(i,a,b) for(int i = (a); i > (int)(b); i--)
 #define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << ' ';cout << d;}
 #define ALL(x) x.begin(),x.end()
-#define PI 3.14159265359
 #define MOD 1000000007
 #define PB push_back
 #define MP make_pair
 #define F first
 #define S second
 
-const double eps = 1e-9;
+const double EPS = 1e-9;
+const double PI = 2 * acos(0.0);
 const int INF = 1e9;
 
 using ll    = long long;
@@ -33,17 +33,25 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
+const int N = 100;
+const int p = 31;
+const int m = 1e9 + 9;
+ll p_pow[N];
+
+void    ppow(){
+    p_pow[0] = 1;
+    RP(i,1,N) p_pow[i] = (p_pow[ i - 1] * p) % m;
+}
+
+ll hash(string const& s){
+    ll hash_value = 0;
+    RP(i,0,s.size()) hash_value = (hash_value + (s[i] - 'a' + 1) * p_pow[i]) % m;
+    return hash_value;
+}
+
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int t;
-    cin >> t;
-    while (t--){
-        string s;
-        cin >> s;
-        ll c = 0
-        cout << c << endl;
-    }
     return 0;
 }

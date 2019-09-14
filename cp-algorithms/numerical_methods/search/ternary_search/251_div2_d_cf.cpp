@@ -8,7 +8,7 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (int)(b); i++)
 #define RV(i,a,b) for(int i = (a); i > (int)(b); i--)
-#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << ' ';cout << d;}
+#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << d;cout << '\n';}
 #define ALL(x) x.begin(),x.end()
 #define PI 3.14159265359
 #define MOD 1000000007
@@ -37,13 +37,16 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int t;
-    cin >> t;
-    while (t--){
-        string s;
-        cin >> s;
-        ll c = 0
-        cout << c << endl;
-    }
+    int n,m;
+    cin >> n >> m;
+    vi a(n), b(m);
+    RP(i,0,n) cin >> a[i];
+    RP(i,0,m) cin >> b[i];
+    sort(ALL(a));
+    sort(ALL(b));
+    reverse(ALL(b));
+    ll ans = 0;
+    RP(i,0, min(n,m)) if (b[i] > a[i]) ans += b[i] - a[i];
+    cout << ans << endl;
     return 0;
 }

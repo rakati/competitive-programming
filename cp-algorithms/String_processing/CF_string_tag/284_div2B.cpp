@@ -8,16 +8,16 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (int)(b); i++)
 #define RV(i,a,b) for(int i = (a); i > (int)(b); i--)
-#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << ' ';cout << d;}
+#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << d;cout << '\n';}
 #define ALL(x) x.begin(),x.end()
-#define PI 3.14159265359
 #define MOD 1000000007
 #define PB push_back
 #define MP make_pair
 #define F first
 #define S second
 
-const double eps = 1e-9;
+const double EPS = 1e-9;
+const double PI = 2 * acos(0.0);
 const int INF = 1e9;
 
 using ll    = long long;
@@ -37,13 +37,20 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int t;
-    cin >> t;
-    while (t--){
+    int n,m;
+    cin >> n >> m;
+    unordered_map<string, string> mp;
+    RP(i,0,m) {
+        string s1, s2;
+        cin >> s1 >> s2;
+        if (s1.size() <= s2.size()) mp[s1] = s1;
+        else mp[s1] = s2;
+    }
+    RP(i,0,n) {
         string s;
         cin >> s;
-        ll c = 0
-        cout << c << endl;
+        cout << mp[s] << ' ';
     }
+    cout << endl;
     return 0;
 }

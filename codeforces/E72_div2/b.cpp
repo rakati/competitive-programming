@@ -32,10 +32,29 @@ using pii   = pair<int, int>;
 using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
+bool    myfunc(const pii &a, const pii &b){
+    return (a.F - a.S < b.F - b.S);
+}
 
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
+    int t;
+    cin >> t;
+    while (t--){
+        int n, x;
+        cin >> n >> x;
+        vpii v(n);
+        RP(i,0,n) cin >> v[i].F >> v[i].S;
+        int maxD = (*max_element(ALL(v))).F;
+        auto maxDH = max_element(ALL(v), myfunc);
+        int maxdif = (*maxDH).F - (*maxDH).S;
+        if (x > maxD && maxdif <= 0) cout << "-1\n";
+        else{
+            if (maxD >= x) cout << "1\n";
+            else cout << ((x - maxD + maxdif + - 1) / maxdif) + 1 << endl;
+        }
+    }
     return 0;
 }

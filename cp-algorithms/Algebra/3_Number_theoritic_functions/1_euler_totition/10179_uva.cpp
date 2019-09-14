@@ -33,17 +33,24 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
+int     phi(int n){
+    int res = n;
+    for (int i = 2; i * i <= n; i++){
+        if (n % i == 0){
+            while (n % i == 0)  n /= i;
+            res -= (res / i);
+        }
+    }
+    if (n > 1) res -= (res / n);
+    return res;
+}
+
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    int t;
-    cin >> t;
-    while (t--){
-        string s;
-        cin >> s;
-        ll c = 0
-        cout << c << endl;
-    }
+    int n;
+    while(cin >> n && n != 0)
+        cout << phi(n) << endl;
     return 0;
 }
