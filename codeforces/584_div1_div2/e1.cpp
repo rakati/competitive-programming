@@ -37,6 +37,16 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int t;
+    cin >> t;
+    while (t--){
+        int n,m;
+        cin >> n >> m;
+        int tab[n][m];
+        RP(i,0,n) RP(j,0,m) cin >> tab[i][j];
+        int res = 0;
+        for (int i = 0; i < n)
+        cout << res << endl;
+    }
     return 0;
 }

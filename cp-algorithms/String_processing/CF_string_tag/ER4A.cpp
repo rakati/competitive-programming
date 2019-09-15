@@ -37,6 +37,22 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int n,q,p;
+    cin >> n >> q >> p;
+    string s;
+    cin >> s;
+    int x,y;
+    x = 0;
+    while (x * p <= n){
+        if ((n - (p * x)) % q == 0) break;
+        x++;
+    }
+    if (x * p > n) cout << "-1\n";
+    else{
+        cout << ((n - (p * x)) / q) + x << endl;
+        int i = 0;
+        while (x-- > 0) {cout << s.substr(i, p) << endl;i += p;}
+        while (i < n) {cout << s.substr(i, q) << endl;i += q;}
+    }
     return 0;
 }

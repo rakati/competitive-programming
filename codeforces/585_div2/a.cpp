@@ -37,6 +37,16 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int a1,a2,k1,k2,n;
+    cin >> a1 >> a2 >> k1 >> k2 >> n;
+    if (n - ((a1 * (k1 - 1)) + (a2 * (k2 - 1))) < 0) cout << 0;
+    else cout << n - ((a1 * (k1 - 1)) + (a2 * (k2 - 1)));
+    if (k1 < k2){
+        if (k1 * a1 <= n) cout  << ' ' << a1 + (n - (a1 * k1)) / k2 << endl;
+        else cout << ' ' << n / k1 << endl;
+    }else{
+        if (k2 * a2 <= n) cout << ' ' << a2 + (n - (a2 * k2)) / k1 << endl;
+        else cout << ' ' << n / k2 << endl;
+    }
     return 0;
 }

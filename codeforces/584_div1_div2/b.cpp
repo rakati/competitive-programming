@@ -37,6 +37,26 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vpii v(n);
+    RP(i,0,n) cin >> v[i].F >> v[i].S;
+    int res = 0;
+    unordered_map<int, int> m;
+    RP(i,0,n){
+        if (s[i] == '1') RP(k,0,v[i].S) m[k]++;
+        for (int j = v[i].S; j < 100000;){
+            int k = 0;
+            while (k < v[i].F) {m[j + k] += (s[i] == '0');k++;}
+            j += k;
+            k = 0;
+            while (k < v[i].F) {m[j + k] += (s[i] == '1');k++;}
+            j += k;
+        }
+    }
+    for (auto p : m) if (p.S > res) res = p.S;
+    cout << res << endl;
     return 0;
 }

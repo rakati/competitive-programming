@@ -37,6 +37,35 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int n, k;
+    cin >> n >> k;
+    vb vis(n + 1, 0);
+    vector<vector<int> > v(n + 1);
+    vpii s(k);
+    RP(i,0,k){
+        pii p;
+        cin >> p.F >> p.S;
+        s.PB(p);
+        v[p.F].PB(p.S);
+        v[p.S].PB(p.F);
+    }
+    int eat = 0;
+    for(pii p : s){
+        queue<int> q;
+        if (vis[p.F] && vis[p.S]) continue;
+        q.push(vis[p.F] ? p.S : p.F);
+        vis[q.front()] = 1;
+        while (!q.empty()){
+            int e = q.front();
+            q.pop();
+            for (int f : v[e]){
+                if (vis[f]) continue;
+                vis[f] = 1;
+                eat++;
+                q.push(f);
+            }
+        }
+    }
+    cout << k - eat << endl;
     return 0;
 }

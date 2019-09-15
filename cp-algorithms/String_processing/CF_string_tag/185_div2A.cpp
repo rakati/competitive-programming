@@ -37,6 +37,16 @@ int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int n;
+    cin >> n;
+    string s;
+    getline(cin, s);
+    RP(i,0,n){
+        getline(cin, s);
+        if (s.size() < 5) cout << "OMG>.< I don't know!\n";
+        else if (s.substr(0, 5) == "miao." && s.substr(s.size() - 5, 5) != "lala.") cout << "Rainbow's\n";
+        else if (s.substr(0, 5) != "miao." && s.substr(s.size() - 5, 5) == "lala.") cout << "Freda's\n";
+        else cout << "OMG>.< I don't know!\n";
+    }
     return 0;
 }
