@@ -42,8 +42,19 @@ int main(){
     while (t--){
         string s;
         cin >> s;
-        ll c = 0
-        cout << c << endl;
+        int res = 0, z = 0;
+        RP(i,0,s.size()){
+            if (s[i] == '1'){
+                int x = 1, p = i;
+                while (x <= (p - i + 1 + z) && p < s.size()){
+                    res++;
+                    p++;
+                    x = (x << 1) + (s[p] == '1');
+                }
+                z = 0;
+            }else z++;
+        }
+        cout << res << endl;
     }
     return 0;
 }

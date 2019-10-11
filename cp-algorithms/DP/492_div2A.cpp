@@ -8,7 +8,7 @@ using namespace std;
 
 #define RP(i,a,b) for(int i = (a); i < (int)(b); i++)
 #define RV(i,a,b) for(int i = (a); i > (int)(b); i--)
-#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << ' ';cout << d;}
+#define SHOW(v,d) {RP(i,0,v.size()) cout << v[i] << d;cout << '\n';}
 #define ALL(x) x.begin(),x.end()
 #define MOD 1000000007
 #define PB push_back
@@ -33,26 +33,15 @@ using pll   = pair<ll, ll>;
 using vpii  = vector<pii>;
 using vpll  = vector<pll>;
 
-const int N = 100;
-const int p = 31;
-const int m = 1e9 + 9;
-ll p_pow[N];
-
-void    ppow(){
-    p_pow[0] = 1;
-    RP(i,1,N) p_pow[i] = (p_pow[ i - 1] * p) % m;
-}
-
-ll hash(string const& s){
-    ll hash_value = 0;
-    RP(i,0,s.size()) hash_value = (hash_value + (s[i] - 'a' + 1) * p_pow[i]) % m;
-    return hash_value;
-}
-
 int main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     //freopen("input.txt","r",stdin);
 	//freopen("output.txt","w",stdout);
-    
+    int n;
+    int res = 0;
+    cin >> n;
+    vi bill = {100,20,10,5,1};
+    RP(i,0,5) {res += n / bill[i]; n %= bill[i];}
+    cout << res << endl;
     return 0;
 }
